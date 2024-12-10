@@ -71,7 +71,7 @@
         {#each visibleSpeakers as d (d.key)}
             <div
                 class="grid-row name-entry"
-                in:fly={{ y: 100, duration: 500 }}
+                in:fly={{ y: 500, duration: 300 }}
                 out:fade
             >
                 <div class="grid-date">
