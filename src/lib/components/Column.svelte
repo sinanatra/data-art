@@ -66,11 +66,15 @@
     </div>
     <strong>Info</strong>
 </section>
-<section class="grid-container">
+<section
+    class="grid-container"
+    style="min-height: {allSpeakers.length * 30}px;"
+>
     <div>
         {#each visibleSpeakers as d (d.key)}
             <div
                 class="grid-row name-entry"
+                on:click={() => (selected = d)}
                 in:fly={{ y: 500, duration: 300 }}
                 out:fade
             >
@@ -83,7 +87,6 @@
                         style="background-image: linear-gradient(to right, transparent, {categoryColors[
                             d.Category
                         ]});"
-                        on:click={() => (selected = d)}
                     >
                         {d.Speaker}
                     </div>
@@ -140,6 +143,10 @@
         border-bottom: 1px solid #000;
     }
 
+    .grid-row:hover {
+        background-color: #ff0000;
+    }
+
     .grid-date {
         text-align: left;
         padding: 0 5px;
@@ -160,10 +167,6 @@
         padding: 0 5px;
         cursor: pointer;
         transition: background-color 0.3s ease;
-    }
-
-    .name:hover {
-        background-color: #ff0000;
     }
 
     .description {
