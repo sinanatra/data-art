@@ -2,6 +2,7 @@
     import { fade, fly } from "svelte/transition";
 
     export let data;
+    export let introductionText;
     let selected = null;
 
     const groupedByDate = data.reduce((groups, item) => {
@@ -59,18 +60,11 @@
     loadNextSpeaker();
 </script>
 
-<section class="grid-container header">
-    <div class="grid-row">
-        <strong>Date</strong>
-        <strong>Speakers</strong>
-    </div>
-    <strong>Info</strong>
-</section>
 <section
     class="grid-container"
-    style="min-height: {allSpeakers.length * 30}px;"
+    style="min-height: {allSpeakers.length * 25}px;"
 >
-    <div>
+    <div class="speakers-list">
         {#each visibleSpeakers as d (d.key)}
             <div
                 class="grid-row name-entry"
@@ -78,9 +72,6 @@
                 in:fly={{ y: 500, duration: 300 }}
                 out:fade
             >
-                <div class="grid-date">
-                    {d.date}
-                </div>
                 <div class="grid-names">
                     <div
                         class="name"
@@ -94,21 +85,28 @@
             </div>
         {/each}
     </div>
-    <div class="description">
+    <div class="description-container">
         {#if selected}
-            {selected.Bio}
+            <div class="selected-speaker">
+                {#if selected.Picture}
+                    <img src={selected.Picture} alt={selected.Speaker} />
+                {/if}
+                <div class="speaker-info">
+                    <h3>{selected.Speaker}</h3>
+                    <p>{selected.Bio}</p>
+                    <a
+                        href={selected.Url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Learn more
+                    </a>
+                </div>
+            </div>
         {:else}
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit
-            laborum magni tempora tenetur adipisci voluptates reiciendis?
-            Corporis ut voluptates, consequatur iusto quae officia totam
-            eligendi fugit dolor animi! Ex, animi! Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Odit laborum magni tempora tenetur
-            adipisci voluptates reiciendis? Corporis ut voluptates, consequatur
-            iusto quae officia totam eligendi fugit dolor animi! Ex, animi!
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odit
-            laborum magni tempora tenetur adipisci voluptates reiciendis?
-            Corporis ut voluptates, consequatur iusto quae officia totam
-            eligendi fugit dolor animi! Ex, animi!
+            <p class="placeholder-text">
+                {introductionText}
+            </p>
         {/if}
     </div>
 </section>
@@ -133,25 +131,18 @@
         display: flex;
         flex-direction: column;
         display: grid;
-        grid-template-columns: 5fr 5fr;
+        grid-template-columns: 6fr 4fr;
     }
 
     .grid-row {
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: 4fr;
         align-items: flex-start;
         border-bottom: 1px solid #000;
     }
 
     .grid-row:hover {
-        background-color: #ff0000;
-    }
-
-    .grid-date {
-        text-align: left;
-        padding: 0 5px;
-        font-size: 12px;
-        font-family: "Space Mono";
+        background-color: violet;
     }
 
     .grid-names {
@@ -169,7 +160,62 @@
         transition: background-color 0.3s ease;
     }
 
-    .description {
-        padding: 5px;
+    .description-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+        margin: 0;
+        border: 0;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+        padding: 2px;
+
+    }
+
+    .selected-speaker {
+        display: flex;
+        gap: 20px;
+    }
+
+    .selected-speaker img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 1px solid;
+    }
+
+    .speaker-info {
+        flex: 1;
+    }
+
+    .speaker-info h3 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #333;
+    }
+
+    .speaker-info p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .speaker-info a {
+        text-decoration: none;
+        color: violet;
+        font-weight: bold;
+    }
+
+    .speaker-info a:hover {
+        text-decoration: underline;
+    }
+
+    .placeholder-text {
+        white-space: pre-wrap;
+        word-wrap: break-word;
     }
 </style>
