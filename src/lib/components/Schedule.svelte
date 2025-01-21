@@ -12,15 +12,15 @@
     }, {});
 
     const palette = [
-        "#A8DADC",
-        "#F4A261",
-        "#E76F51",
-        "#81B29A",
-        "#F2CC8F",
-        "#E9C46A",
-        "#6D9DC5",
-        "#FFB4A2",
-        "#B7E4C7",
+        "#00FF00",
+        "#FF4500",
+        "#FF1493",
+        "#00FFFF",
+        "#FFD700",
+        "#FF69B4",
+        "#1E90FF",
+        "#FF6347",
+        "#ADFF2F",
     ];
 
     const categoryColors = data.reduce((acc, d) => {
@@ -62,7 +62,7 @@
             out:fade
             style="background-image: linear-gradient(to left, {categoryColors[
                 row.Category
-            ]}, transparent);"
+            ]},var(--highlite));"
         >
             <p class="date">{row.displayDate}</p>
             <p class="time">{row.Time}</p>
@@ -85,6 +85,7 @@
         transition:
             transform 0.3s ease,
             background-color 0.3s ease;
+        border-bottom: 1px solid #000;
     }
 
     .date {

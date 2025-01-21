@@ -1,5 +1,6 @@
 <script>
     import { fade, fly } from "svelte/transition";
+    import Email from "./Email.svelte";
 
     export let data;
     export let introductionText;
@@ -14,15 +15,15 @@
     }, {});
 
     const palette = [
-        "#A8DADC",
-        "#F4A261",
-        "#E76F51",
-        "#81B29A",
-        "#F2CC8F",
-        "#E9C46A",
-        "#6D9DC5",
-        "#FFB4A2",
-        "#B7E4C7",
+        "#00FF00",
+        "#FF4500",
+        "#FF1493",
+        "#00FFFF",
+        "#FFD700",
+        "#FF69B4",
+        "#1E90FF",
+        "#FF6347",
+        "#ADFF2F",
     ];
 
     const categoryColors = data.reduce((acc, d) => {
@@ -72,15 +73,13 @@
                 in:fly={{ y: 500, duration: 300 }}
                 out:fade
             >
-                <div class="grid-names">
-                    <div
-                        class="name"
-                        style="background-image: linear-gradient(to right, transparent, {categoryColors[
-                            d.Category
-                        ]});"
-                    >
-                        {d.Speaker}
-                    </div>
+                <div
+                    class="name"
+                    style="background-image: linear-gradient(to right,  var(--highlite), {categoryColors[
+                        d.Category
+                    ]});"
+                >
+                    {d.Speaker}
                 </div>
             </div>
         {/each}
@@ -107,22 +106,12 @@
             <p class="placeholder-text">
                 {introductionText}
             </p>
+            <Email />
         {/if}
     </div>
 </section>
 
 <style>
-    .header {
-        background-color: var(--light);
-        border-bottom: 1px solid;
-        border-top: 1px solid;
-    }
-
-    .header > * {
-        border-bottom: none !important;
-        padding: 0 5px;
-    }
-
     .grid-container > * {
         border-right: 1px solid;
     }
@@ -132,22 +121,23 @@
         flex-direction: column;
         display: grid;
         grid-template-columns: 6fr 4fr;
+        border-top: 1px solid;
     }
 
     .grid-row {
         display: grid;
+        font-size: 1rem;
         grid-template-columns: 4fr;
         align-items: flex-start;
         border-bottom: 1px solid #000;
     }
 
     .grid-row:hover {
-        background-color: violet;
-    }
-
-    .grid-names {
-        display: flex;
-        flex-direction: column;
+        background-image: linear-gradient(
+            to right,
+            var(--highlite-1),
+            var(--highlite-1)
+        );
     }
 
     .name-entry {
@@ -174,12 +164,11 @@
         margin: 0;
         padding: 0;
         padding: 2px;
-
     }
 
     .selected-speaker {
         display: flex;
-        gap: 20px;
+        gap: 10px;
     }
 
     .selected-speaker img {
@@ -206,7 +195,7 @@
 
     .speaker-info a {
         text-decoration: none;
-        color: violet;
+        color: var(--highlite);
         font-weight: bold;
     }
 

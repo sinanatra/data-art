@@ -18,6 +18,8 @@
         padding: 0;
         --light: #f5f5f5;
         --dark: rgb(20, 20, 20);
+        --highlite: rgba(255, 255, 0, 0.291);
+        --highlite-1: red;
         font-family: space, sans-serif;
         font-feature-settings: "liga", "ss03", "ss02";
         text-rendering: geometricPrecision;

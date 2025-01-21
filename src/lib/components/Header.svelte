@@ -1,20 +1,21 @@
 <script>
     import Viz from "$lib/components/Viz.svelte";
+    import Logo from "$lib/components/Logo.svelte";
+    import { base } from "$app/paths";
 </script>
 
 <header>
     <div class="header-grid">
         <div class="header-title">
-            <h1>data|art</h1>
+            <Logo />
         </div>
-        <div class="header-description"></div>
     </div>
 
     <div class="viz">
         <Viz />
         <div class="links">
-            <a href="/">Partecipants</a> |
-            <a href="/schedule">Schedule</a> |
+            <a href="{base}/">Partecipants</a> |
+            <a href="{base}/schedule">Schedule</a> |
             <a
                 href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
                 target="_blank"
@@ -52,17 +53,19 @@
 
     header {
         position: relative;
-        /* background-color: var(--light); */
         color: var(--dark);
         padding: 10px 0px 20px 0px;
         font-size: 14px;
         line-height: 1.1;
         min-height: 360px;
+        display: flex;
+        align-content: center;
+        align-items: center;
+        justify-content: center;
     }
 
     .header-grid {
         display: grid;
-        grid-template-columns: 1fr 4fr 5fr;
     }
 
     .header-title {
@@ -75,11 +78,5 @@
     .header-description {
         font-family: "Space Mono", monospace;
         /* font-style: italic; */
-    }
-
-    h1 {
-        margin: 0;
-        font-size: 1rem;
-        font-family: "Space Mono", monospace;
     }
 </style>
