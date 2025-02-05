@@ -195,7 +195,7 @@
 
     .speaker-info a {
         text-decoration: none;
-        color: var(--highlite);
+        color: var(--highlite-1);
         font-weight: bold;
     }
 
