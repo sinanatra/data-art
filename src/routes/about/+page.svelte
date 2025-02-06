@@ -55,6 +55,7 @@
 
   .row {
     display: flex;
+    max-width: 840px;
   }
   .cell {
     flex: 1;
@@ -64,7 +65,6 @@
     border-right: none;
   }
   .header {
-    font-weight: bold;
     background-color: transparent;
   }
 </style>
