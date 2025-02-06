@@ -59,7 +59,11 @@
 </script>
 
 <article>
-  <Speakers data={speakerData} {introductionText} />
+  {#if speakerData.length > 0}
+    <Speakers data={speakerData} {introductionText} />
+  {:else}
+    <Speakers data={speakerData} {introductionText} />
+  {/if}
 </article>
 
 <style>
