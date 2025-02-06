@@ -1,5 +1,6 @@
 <script>
   import { fade, fly } from "svelte/transition";
+  import palette from "$lib/stores";
 
   export let data;
 
@@ -10,18 +11,6 @@
     groups[item.Date].push(item);
     return groups;
   }, {});
-
-  const palette = [
-    "#A8DADC",
-    "#F4A261",
-    "#E76F51",
-    "#81B29A",
-    "#F2CC8F",
-    "#E9C46A",
-    "#6D9DC5",
-    "#FFB4A2",
-    "#B7E4C7",
-  ];
 
   const categoryColors = data.reduce((acc, d) => {
     if (!acc[d.Category]) {
@@ -62,7 +51,7 @@
       out:fade
       style="background-image: linear-gradient(to left, {categoryColors[
         row.Category
-      ]},var(--highlite));"
+      ]},var(--highlite-1));"
     >
       <p class="date">{row.displayDate}</p>
       <p class="time">{row.Time}</p>
@@ -103,5 +92,17 @@
   p {
     margin: 0;
     padding: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .grid-row {
+      display: block;
+      font-size: 1.2rem;
+      line-height: 2;
+    }
+
+    .time {
+      text-align: left;
+    }
   }
 </style>

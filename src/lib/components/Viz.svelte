@@ -1,119 +1,114 @@
 <script>
-    import P5 from "p5-svelte";
+  import P5 from "p5-svelte";
 
-    let container;
+  let container;
 
-    const sketch = (p) => {
-        let gridX = 200;
-        let gridY = 2;
-        let speeds = [];
-        let rowNoises = [];
-        let canvasHeight;
+  let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤◯○^:,._▚▀▓▒░#@■□▪▫:·";
 
-        p.setup = () => {
-            canvasHeight = container ? container.offsetHeight : 300;
-            p.createCanvas(p.windowWidth - 10, canvasHeight);
-            p.noStroke();
-            p.rectMode(p.CORNER);
+  let grid = 10;
 
-            updateSpeeds();
-            updateRowNoises();
-            p.background(255);
-        };
+  let scale = 0.01;
+  let t = 0;
+  let speed = 0.01;
+  let baseHue = 0;
 
-        p.draw = () => {
-            p.background(255);
+  let sketch = (p) => {
+    p.setup = () => {
+      const w = container.offsetWidth;
+      const h = container.offsetHeight;
+      p.createCanvas(w, h);
 
-            // if (p.frameCount % 10 === 0) {
-            //     gridX = p.map(p.mouseX, 0, 500, 2, 300);
-            //     gridY = p.map(p.mouseY, 0, 500, 2, 10);
-            //     updateSpeeds();
-            //     updateRowNoises();
-            // }
-
-            const tileWidth = p.width / gridX;
-            const tileHeight = p.height / gridY;
-
-            const time = p.millis() * 0.01;
-
-            for (let y = 0; y < gridY; y++) {
-                const velocity = speeds[y] * 0.01;
-                const stepNoise = rowNoises[y % rowNoises.length];
-
-                for (let x = 0; x < gridX; x++) {
-                    const px = x * tileWidth;
-                    const py = y * tileHeight;
-
-                    const randVal = pattern(x, y, time, velocity, stepNoise);
-                    const brightness = p.map(randVal, 0, 1, 0, 255);
-                    const rectHeight = p.map(
-                        randVal,
-                        0,
-                        1,
-                        tileHeight * 0.1,
-                        tileHeight,
-                    );
-
-                    p.fill(245, 245, 245, brightness);
-                    // p.stroke(245);
-                    // p.noStroke();
-                    p.rect(px, py, tileWidth, rectHeight);
-                }
-            }
-        };
-
-        const updateSpeeds = () => {
-            speeds = [];
-            for (let i = 0; i < gridY; i++) {
-                speeds.push(p.random(-2, 2));
-            }
-        };
-
-        const updateRowNoises = () => {
-            rowNoises = [];
-            for (let i = 0; i < gridY; i++) {
-                rowNoises.push(p.random(0.1, 0.9));
-            }
-        };
-
-        const pattern = (x, y, time, velocity, stepNoise) => {
-            const st = p.createVector(x, y);
-            const vel = p.createVector(
-                -time * Math.max(gridX, gridY) * velocity,
-                0,
-            );
-            const gridPos = p.createVector(
-                p.floor(st.x + vel.x),
-                p.floor(st.y + vel.y),
-            );
-            return step(stepNoise, random2D(gridPos));
-        };
-
-        const step = (edge, value) => (value < edge ? 0.0 : 1.0);
-
-        const random2D = (st) =>
-            p.fract(Math.sin(st.x * 12.9898 + st.y * 78.233) * 43758.5453123);
-
-        p.windowResized = () => {
-            canvasHeight = container ? container.offsetHeight : 300;
-            p.resizeCanvas(p.windowWidth - 10, canvasHeight);
-        };
+      p.textFont("Courier");
+      p.textAlign(p.CENTER, p.CENTER);
+      p.noStroke();
+      p.frameRate(30);
     };
+
+    p.draw = () => {
+      p.background("#f1f1f1");
+
+      const activity = 1;
+
+    //   if (p.frameCount % 100 === 0) {
+    //     asciiGradient = p.random([
+    //       "   ▍▎▏▚▀▓▉▊▋▌▍▎▏■□▪▫/*+=-:·▉▊▋▌▍▎▏|+=-:·",
+    //       "   █▓▒░░▒▓█▉▊▋▌▍▎▏■□▪░▒▓.:-=+*#@",
+    //       "   ▚▀▓▒░#@■□▪▫/*+=-~^:,._▚▀▓▒░#@■□▪▫:·",
+    //       "   ▪▫@&%$O0o+=~-^:,._`'·▉▊▋▌▍▎▏░▒▓.:-+",
+    //       "   ▉▊▋▌▍▎▚▀▓▒▉▊▋▌▍▎■□▪░▒▓█▍▎▏:·",
+    //       "   ▒░▓█◆◇⬤◯○▋▍▎▏░▒▓▉▌░▒▓█",
+    //     ]);
+    //   }
+
+      t += activity * speed;
+      baseHue = (baseHue + 1) % 255;
+
+      //   if (p.frameCount % 60 === 0) {
+      //     scale = p.random([0.1, 0.01, 0.001]);
+      //   }
+
+      renderASCII(t, activity, scale);
+    };
+
+    function renderASCII(time, energy, dynamicScale) {
+      const gridCols = p.floor(p.width / grid);
+      const gridRows = p.floor(p.height / grid);
+      const charSize = p.width / gridCols;
+      p.textSize(charSize);
+
+      const xOffset = time * 0.9;
+      const yOffset = time * 0.9;
+
+      for (let y = 0; y < gridRows; y++) {
+        for (let x = 0; x < gridCols; x++) {
+          const noiseValue = p.noise(
+            (x + xOffset) * dynamicScale,
+            (y + yOffset) * dynamicScale,
+            time
+          );
+
+          const jitterX = p.sin(time + y * 0.1);
+          const jitterY = p.cos(time + x * 0.1);
+
+          const charIndex = p.floor(
+            p.map(noiseValue, 0, 1, 0, asciiGradient.length - 1)
+          );
+          const asciiChar = asciiGradient.charAt(charIndex);
+
+          const xPos = x * charSize + charSize / 2 + jitterX;
+          const yPos = y * charSize + charSize / 2 + jitterY;
+
+          //   const brightness = p.map(noiseValue, 0, 1, 220, 255);
+          //   p.fill(brightness);
+
+          p.fill("#ffffff");
+
+          p.push();
+          p.translate(xPos, yPos);
+          p.rotate(noiseValue * p.TWO_PI * 0.1);
+          p.text(asciiChar, 0, 0);
+          p.pop();
+        }
+      }
+    }
+
+    p.windowResized = () => {
+      p.resizeCanvas(container.offsetWidth, container.offsetHeight);
+    };
+  };
 </script>
 
-<div bind:this={container} class="viz-container">
-    <P5 {sketch} />
+<div class="viz-container" bind:this={container}>
+  <P5 {sketch} />
 </div>
 
 <style>
-    .viz-container {
-        width: 100%;
-        height: 100%;
-        /* max-height: 300px; */
-        position: relative;
-    }
-
-    :global(canvas) {
-        display: block;
-    }
+  .viz-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  :global(canvas) {
+    display: block;
+  }
 </style>
