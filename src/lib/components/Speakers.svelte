@@ -68,9 +68,11 @@
   bind:this={container}
   style="min-height: {allSpeakers.length * 40}px;"
 >
-  <div class="description-container">
-    <p class="placeholder-text">{introductionText}</p>
-  </div>
+  {#if introductionText}
+    <div class="description-container">
+      <p class="placeholder-text">{introductionText}</p>
+    </div>
+  {/if}
 
   <div class="speakers-list">
     {#each visibleSpeakers as d (d.key)}
@@ -115,7 +117,7 @@
 <style>
   .grid-container {
     display: grid;
-    grid-template-columns: 4fr 6fr;
+    grid-template-columns: 6fr 4fr;
     border-top: 1px solid;
     height: 100%;
   }

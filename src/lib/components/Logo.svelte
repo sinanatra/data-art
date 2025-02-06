@@ -25,7 +25,7 @@
 }
 
   .logo {
-    font-size: clamp(50px, 14vw, 150px);
+    font-size: clamp(50px, 14vw, 180px);
     position: relative;
     width: max-content;
     height: max-content;
@@ -61,6 +61,8 @@
     --index: calc(var(--n) - 4);
     --start: calc((1 - 4) * clamp(6px, 1.9vw, 40px));
     animation-delay: calc(var(--n) * 0.1s);
+    /* z-index: var(--n); */
+    /* color: white; */
   }
 
   .logo div:nth-child(1) {

@@ -5,11 +5,11 @@
 
   let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤◯○^:,._▚▀▓▒░#@■□▪▫:·";
 
-  let grid = 10;
+  let grid = 15;
 
   let scale = 0.01;
   let t = 0;
-  let speed = 0.01;
+  let speed = 0.005;
   let baseHue = 0;
 
   let sketch = (p) => {
@@ -21,7 +21,7 @@
       p.textFont("Courier");
       p.textAlign(p.CENTER, p.CENTER);
       p.noStroke();
-      p.frameRate(30);
+      p.frameRate(20);
     };
 
     p.draw = () => {
@@ -83,6 +83,10 @@
 
           p.fill("#ffffff");
 
+          if(asciiChar == "◯"){
+            p.fill("#888");
+          }
+
           p.push();
           p.translate(xPos, yPos);
           p.rotate(noiseValue * p.TWO_PI * 0.1);
@@ -93,7 +97,7 @@
     }
 
     p.windowResized = () => {
-      p.resizeCanvas(container.offsetWidth, container.offsetHeight);
+      p.resizeCanvas(container?.offsetWidth, container?.offsetHeight);
     };
   };
 </script>

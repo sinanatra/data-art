@@ -14,9 +14,9 @@
   <div class="viz">
     <Viz />
     <div class="links">
-      <a href="{base}/">Participants</a> |
-      <a href="{base}/schedule">Schedule</a> |
-      <a href="{base}/about">About</a> |
+      <a href="{base}/">data|art</a> |
+      <!-- <a href="{base}/schedule">schedule</a> | -->
+      <a href="{base}/about">about</a> |
       <!-- <a
                 href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
                 target="_blank"
@@ -43,12 +43,14 @@
     left: 5px;
     cursor: pointer;
     z-index: 100;
+    font-size: 1.3rem;
   }
 
   a {
     cursor: pointer;
-    /* text-decoration: none; */
-    font-size: 14px;
+    text-decoration: none;
+    /* font-size: 14px; */
+
     font-family: space, monospace;
   }
 
@@ -58,7 +60,7 @@
     padding: 10px 0px 20px 0px;
     font-size: 14px;
     line-height: 1.1;
-    min-height: 360px;
+    min-height: 560px;
     display: flex;
     align-content: center;
     align-items: center;
