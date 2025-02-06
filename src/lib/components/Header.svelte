@@ -14,13 +14,13 @@
     <div class="viz">
         <Viz />
         <div class="links">
-            <a href="{base}/">Partecipants</a> |
+            <a href="{base}/">Participants</a> |
             <a href="{base}/schedule">Schedule</a> |
-            <a
+            <!-- <a
                 href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer">Source</a
-            >
+            > -->
         </div>
     </div>
 </header>
