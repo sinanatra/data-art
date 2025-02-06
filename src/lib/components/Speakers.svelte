@@ -70,7 +70,7 @@
 >
   <div class="description-container">
     <p class="placeholder-text">{introductionText}</p>
-</div>
+  </div>
 
   <div class="speakers-list">
     {#each visibleSpeakers as d (d.key)}
@@ -123,7 +123,7 @@
   .description-container {
     background-color: white;
     padding: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
     border-right: 1px solid #000;
   }
 

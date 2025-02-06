@@ -37,12 +37,18 @@
   {#if scheduleData.length > 0}
     <Schedule data={scheduleData} />
   {:else}
-    <p></p>
+    <p>To be announced...</p>
   {/if}
 </article>
 
 <style>
   article {
     color: var(--dark);
+  }
+
+  p {
+    margin: 0;
+    padding: 10px;
+    font-size: 1.6rem;
   }
 </style>

@@ -59,7 +59,6 @@
   }
   .cell {
     flex: 1;
-    padding: 0.5rem;
   }
   .row .cell:last-child {
     border-right: none;
