@@ -236,8 +236,8 @@
     position: absolute;
     width: 100%;
     color: transparent;
-    -webkit-text-stroke: 1px #000;
-    transform: translateY(calc(-50% + var(--index) * 0.25ex));
+    -webkit-text-stroke: 0.5px #000;
+    transform: translateY(calc(-50% + var(--index) * 0.18ex));
   }
 
   .text-overlay div:nth-child(4) {

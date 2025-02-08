@@ -40,7 +40,7 @@
     white-space: nowrap;
     text-align: center;
     color: transparent;
-    -webkit-text-stroke: 1px #000;
+    -webkit-text-stroke: 0.5px #000;
     animation: moveText 0.5s ease-out forwards;
     transform: translate(-50%, -80%);
   }
@@ -50,7 +50,7 @@
       transform: translate(-50%, -80%);
     }
     100% {
-      transform: translate(-50%, calc(-50% + var(--index) * 0.25ex));
+      transform: translate(-50%, calc(-50% + var(--index) * 0.27ex));
     }
   }
 
