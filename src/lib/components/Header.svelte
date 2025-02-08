@@ -17,7 +17,8 @@
       <a href="{base}/">data|art</a> |
       <!-- <a href="{base}/schedule">schedule</a> | -->
       <a href="{base}/about">about</a> |
-      <a href="{base}/toolkit">toolkit</a> |
+      <!-- <a href="{base}/toolkit">toolkit</a> | -->
+
       <!-- <a
                 href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
                 target="_blank"
@@ -80,7 +81,7 @@
   }
 
   .header-description {
-    font-family: "Space Mono", monospace;
+    font-family: space, monospace;
     /* font-style: italic; */
   }
 </style>

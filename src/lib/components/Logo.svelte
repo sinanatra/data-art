@@ -31,6 +31,7 @@
     height: max-content;
     user-select: none;
     font-family: geologica, sans-serif;
+    /* font-family: space, geologica, sans-serif; */
   }
 
   .logo div {

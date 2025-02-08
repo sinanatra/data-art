@@ -1,27 +1,20 @@
 <script>
-  import { onMount } from "svelte";
-  import P5 from "p5-svelte";
   import html2canvas from "html2canvas";
+  import Viz from "$lib/components/Viz.svelte";
 
   let customText = "DATA | ART";
-  let imageWidth = 1200;
-  let imageHeight = 800;
+  let imageWidth = 600;
+  let imageHeight = 600;
   let grid = 15;
-
-  let highlite = "#ff00ae";
-
-  let container;
+  let highlite = "#ff0000";
+  let textColor = "#000000";
 
   let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░◯○^:,._▚▀▓▒░#@■□▪▫:·";
   let scale = 0.01;
-  let t = 0;
   let speed = 0.005;
-  let baseHue = 0;
-
   let imageURL = "";
-  let loadedImage = null;
-  let imageMargin = grid * 3;
-  let p5Instance = null;
+
+  let container;
 
   function handleFileInput(e) {
     const file = e.target.files[0];
@@ -38,92 +31,6 @@
       link.click();
     });
   }
-
-  let sketch = (p) => {
-    p.setup = () => {
-      p.createCanvas(innerWidth, innerHeight);
-      p.textFont("Courier");
-      p.textAlign(p.CENTER, p.CENTER);
-      p.noStroke();
-      p.frameRate(20);
-      p5Instance = p;
-    };
-
-    p.draw = () => {
-      p.background("#f1f1f1");
-
-      const activity = 1;
-      t += activity * speed;
-      baseHue = (baseHue + 1) % 255;
-
-      renderASCII(t, activity, scale);
-
-      if (imageURL && (!loadedImage || loadedImage.url !== imageURL)) {
-        p.loadImage(imageURL, (img) => {
-          img.url = imageURL;
-          loadedImage = img;
-        });
-      }
-      if (loadedImage) {
-        let availW = imageWidth - 2 * imageMargin;
-        let availH = imageHeight - 2 * imageMargin;
-        let s = Math.min(
-          availW / loadedImage.width,
-          availH / loadedImage.height
-        );
-        let dw = loadedImage.width * s;
-        let dh = loadedImage.height * s;
-        let dx = (imageWidth - dw) / 2;
-        let dy = (imageHeight - dh) / 2;
-        p.image(loadedImage, dx, dy, dw, dh);
-      }
-    };
-
-    function renderASCII(time, energy, dynamicScale) {
-      const gridCols = p.floor(imageWidth / grid);
-      const gridRows = p.floor(imageHeight / grid);
-      const charSize = imageWidth / gridCols;
-      p.textSize(charSize);
-
-      const xOffset = time * 0.9;
-      const yOffset = time * 0.9;
-
-      for (let y = 0; y < gridRows; y++) {
-        for (let x = 0; x < gridCols; x++) {
-          const noiseValue = p.noise(
-            (x + xOffset) * dynamicScale,
-            (y + yOffset) * dynamicScale,
-            time
-          );
-
-          const jitterX = p.sin(time + y * 0.1);
-          const jitterY = p.cos(time + x * 0.1);
-
-          const charIndex = p.floor(
-            p.map(noiseValue, 0, 1, 0, asciiGradient.length - 1)
-          );
-          const asciiChar = asciiGradient.charAt(charIndex);
-
-          const xPos = x * charSize + charSize / 2 + jitterX;
-          const yPos = y * charSize + charSize / 2 + jitterY;
-
-          p.fill("#ffffff");
-          if (asciiChar == "◯" || asciiChar == "." || asciiChar == "*") {
-            p.fill(highlite);
-          }
-
-          p.push();
-          p.translate(xPos, yPos);
-          p.text(asciiChar, 0, 0);
-          p.pop();
-        }
-      }
-    }
-
-    p.windowResized = () => {
-      p.resizeCanvas(imageWidth, imageHeight);
-    };
-  };
 </script>
 
 <div class="toolkit">
@@ -156,23 +63,36 @@
       Highlited Color:
       <input type="color" bind:value={highlite} />
     </label>
+    <label>
+      Text Color:
+      <input type="color" bind:value={textColor} />
+    </label>
     <button on:click={savePNG}>Download Image</button>
   </div>
 
   <div
     class="canvas-container"
     bind:this={container}
-    style="width: {imageWidth}px; height: {imageHeight}px; --overlay-color: {highlite};"
+    style="width: {imageWidth}px; height: {imageHeight}px; --text-color: {textColor};"
   >
-    <div class="viz-container">
-      <P5 {sketch} />
+    <div class="viz-wrapper">
+      <div class="viz-item">
+        <Viz
+          {grid}
+          {asciiGradient}
+          {scale}
+          {speed}
+          {highlite}
+          {imageURL}
+          {imageWidth}
+          {imageHeight}
+        />
+      </div>
     </div>
 
     <div class="text-overlay" style="width: {imageWidth - 20}px">
       {#each Array(7) as _, i}
-        <div style="--index: {i + 1 - 4}">
-          {customText}
-        </div>
+        <div style="--index: {i + 1 - 4}">{customText}</div>
       {/each}
     </div>
   </div>
@@ -201,13 +121,26 @@
     margin: 5px;
     font-size: 14px;
   }
-
   .canvas-container {
     position: relative;
     border: 1px solid #ccc;
     overflow: hidden;
   }
-  .viz-container {
+  .viz-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .viz-item {
+    flex: 1;
+    position: relative;
+    border-right: 1px solid #ccc;
+  }
+  .viz-item:last-child {
+    border-right: none;
+  }
+  /* Ensure that the viz components’ canvases fill their containers */
+  :global(.viz-container) {
     position: absolute;
     top: 0;
     left: 0;
@@ -217,7 +150,6 @@
   :global(canvas) {
     display: block;
   }
-
   .text-overlay {
     position: absolute;
     top: 50%;
@@ -231,16 +163,14 @@
     text-transform: uppercase;
     width: 100%;
   }
-
   .text-overlay div {
     position: absolute;
     width: 100%;
     color: transparent;
-    -webkit-text-stroke: 0.5px #000;
+    -webkit-text-stroke: 0.5px var(--text-color);
     transform: translateY(calc(-50% + var(--index) * 0.18ex));
   }
-
   .text-overlay div:nth-child(4) {
-    color: black;
+    color: var(--text-color);
   }
 </style>
