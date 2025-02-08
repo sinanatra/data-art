@@ -3,7 +3,7 @@
 
   let container;
 
-  let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤◯○^:,._▚▀▓▒░#@■□▪▫:·";
+  let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░◯○^:,._▚▀▓▒░#@■□▪▫:·";
 
   let grid = 15;
 
@@ -29,16 +29,16 @@
 
       const activity = 1;
 
-    //   if (p.frameCount % 100 === 0) {
-    //     asciiGradient = p.random([
-    //       "   ▍▎▏▚▀▓▉▊▋▌▍▎▏■□▪▫/*+=-:·▉▊▋▌▍▎▏|+=-:·",
-    //       "   █▓▒░░▒▓█▉▊▋▌▍▎▏■□▪░▒▓.:-=+*#@",
-    //       "   ▚▀▓▒░#@■□▪▫/*+=-~^:,._▚▀▓▒░#@■□▪▫:·",
-    //       "   ▪▫@&%$O0o+=~-^:,._`'·▉▊▋▌▍▎▏░▒▓.:-+",
-    //       "   ▉▊▋▌▍▎▚▀▓▒▉▊▋▌▍▎■□▪░▒▓█▍▎▏:·",
-    //       "   ▒░▓█◆◇⬤◯○▋▍▎▏░▒▓▉▌░▒▓█",
-    //     ]);
-    //   }
+      //   if (p.frameCount % 100 === 0) {
+      //     asciiGradient = p.random([
+      //       "   ▍▎▏▚▀▓▉▊▋▌▍▎▏■□▪▫/*+=-:·▉▊▋▌▍▎▏|+=-:·",
+      //       "   █▓▒░░▒▓█▉▊▋▌▍▎▏■□▪░▒▓.:-=+*#@",
+      //       "   ▚▀▓▒░#@■□▪▫/*+=-~^:,._▚▀▓▒░#@■□▪▫:·",
+      //       "   ▪▫@&%$O0o+=~-^:,._`'·▉▊▋▌▍▎▏░▒▓.:-+",
+      //       "   ▉▊▋▌▍▎▚▀▓▒▉▊▋▌▍▎■□▪░▒▓█▍▎▏:·",
+      //       "   ▒░▓█◆◇⬤◯○▋▍▎▏░▒▓▉▌░▒▓█",
+      //     ]);
+      //   }
 
       t += activity * speed;
       baseHue = (baseHue + 1) % 255;
@@ -78,18 +78,19 @@
           const xPos = x * charSize + charSize / 2 + jitterX;
           const yPos = y * charSize + charSize / 2 + jitterY;
 
-          //   const brightness = p.map(noiseValue, 0, 1, 220, 255);
-          //   p.fill(brightness);
+          // const brightness = p.map(noiseValue, 0, 1, 100, 255);
+          // p.fill(0, 0, brightness);
 
           p.fill("#ffffff");
 
-          if(asciiChar == "◯"){
-            p.fill("#888");
+          if (asciiChar == "◯" || asciiChar == ".") {
+            // p.fill("#888");
+            p.fill("#ff00ae");
           }
 
           p.push();
           p.translate(xPos, yPos);
-          p.rotate(noiseValue * p.TWO_PI * 0.1);
+          // p.rotate(noiseValue * p.TWO_PI * 0.1);
           p.text(asciiChar, 0, 0);
           p.pop();
         }
