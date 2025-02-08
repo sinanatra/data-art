@@ -1,0 +1,3 @@
+import{y as x,z as i}from"./scheduler.DK6SwrJy.js";function _(f){const t=f-1;return t*t*t+1}function S(f,{delay:t=0,duration:n=400,easing:o=x}={}){const s=+getComputedStyle(f).opacity;return{delay:t,duration:n,easing:o,css:e=>`opacity: ${e*s}`}}function U(f,{delay:t=0,duration:n=400,easing:o=_,x:s=0,y:e=0,opacity:u=0}={}){const c=getComputedStyle(f),a=+c.opacity,y=c.transform==="none"?"":c.transform,p=a*(1-u),[d,l]=i(s),[m,$]=i(e);return{delay:t,duration:n,easing:o,css:(r,g)=>`
+			transform: ${y} translate(${(1-r)*d}${l}, ${(1-r)*m}${$});
+			opacity: ${a-p*g}`}}const V=["#ffffff","#f7f7f7","#f1f1f1","#efefef","#e7e7e7","#d9d9d9","#d7d7d7","#cfcfcf"];export{S as a,U as f,V as p};
