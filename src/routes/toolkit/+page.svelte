@@ -37,11 +37,8 @@
   <div class="controls">
     <label>
       Text:
-      <input
-        type="text"
-        bind:value={customText}
-        placeholder="Enter your text"
-      />
+      <textarea bind:value={customText} placeholder="Enter your text"
+      ></textarea>
     </label>
     <label>
       Width (px):
@@ -86,13 +83,16 @@
           {imageURL}
           {imageWidth}
           {imageHeight}
+          resize={true}
         />
       </div>
     </div>
 
     <div class="text-overlay" style="width: {imageWidth - 20}px">
       {#each Array(7) as _, i}
-        <div style="--index: {i + 1 - 4}">{customText}</div>
+        <div style="--index: {i + 1 - 4}">
+          {@html customText.replace(/\n/g, "<br/>")}
+        </div>
       {/each}
     </div>
   </div>

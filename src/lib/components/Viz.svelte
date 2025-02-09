@@ -4,6 +4,9 @@
 
   export let asciiGradient =
     "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░◯○^:,._▚▀▓▒░#@■□▪▫:·";
+
+  asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░●^:,._▚▀▓▒░#@■□▪▫:·";
+
   export let grid = 15;
   export let scale = 0.01;
   export let speed = 0.005;
@@ -11,6 +14,7 @@
   export let imageURL = "";
   export let imageWidth = 1200;
   export let imageHeight = 800;
+  export let resize;
 
   let container;
   let t = 0;
@@ -56,7 +60,7 @@
         });
       }
       if (loadedImage) {
-        let margin = grid * 3;
+        let margin = grid;
         let availW = p._imageWidth - 2 * margin;
         let availH = p._imageHeight - 2 * margin;
         let s = Math.min(
@@ -80,6 +84,17 @@
       const xOffset = time * 0.9;
       const yOffset = time * 0.9;
 
+      let jitterXArr = new Array(gridRows);
+      for (let y = 0; y < gridRows; y++) {
+        jitterXArr[y] = p.sin(time + y * 0.1);
+      }
+      let jitterYArr = new Array(gridCols);
+      for (let x = 0; x < gridCols; x++) {
+        jitterYArr[x] = p.cos(time + x * 0.1);
+      }
+
+      const highlightInterval = 4;
+
       for (let y = 0; y < gridRows; y++) {
         for (let x = 0; x < gridCols; x++) {
           const noiseValue = p.noise(
@@ -87,24 +102,19 @@
             (y + yOffset) * dynamicScale,
             time
           );
-          const jitterX = p.sin(time + y * 0.1);
-          const jitterY = p.cos(time + x * 0.1);
-
           const charIndex = p.floor(
             p.map(noiseValue, 0, 1, 0, p._asciiGradient.length - 1)
           );
           const asciiChar = p._asciiGradient.charAt(charIndex);
 
-          const xPos = x * charSize + charSize / 2 + jitterX;
-          const yPos = y * charSize + charSize / 2 + jitterY;
+          const xPos = x * charSize + charSize / 2 + jitterXArr[y];
+          const yPos = y * charSize + charSize / 2 + jitterYArr[x];
 
-          if (asciiChar === "▪" || asciiChar === "○" || asciiChar === "◇") {
+          if (charIndex % highlightInterval === 0) {
             p.fill(p._highlite);
           } else {
             p.fill("#ffffff");
           }
-
-          // "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░◯○^:,._▚▀▓▒░#@■□▪▫:·";
 
           p.push();
           p.translate(xPos, yPos);
@@ -129,7 +139,8 @@
     p5Instance._imageWidth = imageWidth;
     p5Instance._imageHeight = imageHeight;
   }
-  $: if (p5Instance && imageWidth && imageHeight && $page.route == "/toolkit") {
+
+  $: if (p5Instance && imageWidth && imageHeight && resize == true) {
     p5Instance.resizeCanvas(imageWidth, imageHeight);
   }
 </script>

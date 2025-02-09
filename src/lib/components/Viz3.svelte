@@ -1,17 +1,17 @@
 <script>
   import P5 from "p5-svelte";
-  import { page } from "$app/stores";
 
   export let grid = 50;
   export let gridY = 2;
   export let gradientWidth = 10;
 
-  export let highlite = "#ff0000";
+  export let highlite = "#0000ff";
   export let endColor = "#ffffff";
 
   export let imageURL = "";
   export let imageWidth = 1200;
   export let imageHeight = 800;
+  export let resize;
 
   let container;
   let p5Instance;
@@ -131,7 +131,7 @@
     updateSpeed();
   }
 
-  $: if (p5Instance && imageWidth && imageHeight && $page.route == "/toolkit") {
+  $: if (p5Instance && imageWidth && imageHeight && resize == true) {
     p5Instance.resizeCanvas(imageWidth, imageHeight);
   }
 </script>
