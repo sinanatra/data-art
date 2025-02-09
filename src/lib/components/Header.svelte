@@ -48,6 +48,15 @@
     font-size: 1.3rem;
   }
 
+  .links > * {
+    text-shadow:
+      1px 1px 5px white,
+      1px 1px 5px white,
+      1px 1px 5px white,
+      1px 1px 5px white,
+      1px 1px 5px white;
+  }
+
   a {
     cursor: pointer;
     text-decoration: none;

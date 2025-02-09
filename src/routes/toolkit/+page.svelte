@@ -8,6 +8,7 @@
   let grid = 15;
   let highlite = "#ff0000";
   let textColor = "#000000";
+  let background = "#efefef";
 
   let asciiGradient = "▚▀▓▒░#@■□▪▫/*+=-~◆◇⬤▚▀▓▒░◯○^:,._▚▀▓▒░#@■□▪▫:·";
   let scale = 0.01;
@@ -64,6 +65,10 @@
       Text Color:
       <input type="color" bind:value={textColor} />
     </label>
+    <label>
+      Background Color:
+      <input type="color" bind:value={background} />
+    </label>
     <button on:click={savePNG}>Download Image</button>
   </div>
 
@@ -83,6 +88,7 @@
           {imageURL}
           {imageWidth}
           {imageHeight}
+          {background}
           resize={true}
         />
       </div>

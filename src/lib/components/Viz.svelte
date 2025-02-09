@@ -9,8 +9,10 @@
 
   export let grid = 15;
   export let scale = 0.01;
-  export let speed = 0.005;
+  export let speed = 0.002;
   export let highlite = "#0000ff";
+  export let background = "#efefef";
+
   export let imageURL = "";
   export let imageWidth = 1200;
   export let imageHeight = 800;
@@ -37,6 +39,7 @@
       p._scale = scale;
       p._speed = speed;
       p._highlite = highlite;
+      p._background = background;
       p._imageURL = imageURL;
       p._imageWidth = imageWidth;
       p._imageHeight = imageHeight;
@@ -45,7 +48,7 @@
     };
 
     p.draw = () => {
-      p.background("#efefef");
+      p.background(p._background);
 
       const activity = 1;
       t += activity * p._speed;
@@ -94,6 +97,15 @@
       }
 
       const highlightInterval = 4;
+      p.colorMode(p.HSB, 360, 100, 100, 100);
+      let mainCol = p.color(p._highlite);
+      let secondaryHue = (p.hue(mainCol) + 30) % 360;
+      let secondaryCol = p.color(
+        secondaryHue,
+        p.saturation(mainCol),
+        p.brightness(mainCol)
+      );
+      p.colorMode(p.RGB);
 
       for (let y = 0; y < gridRows; y++) {
         for (let x = 0; x < gridCols; x++) {
@@ -112,6 +124,8 @@
 
           if (charIndex % highlightInterval === 0) {
             p.fill(p._highlite);
+          } else if (charIndex % (highlightInterval + 1) === 0) {
+            // p.fill(secondaryCol);
           } else {
             p.fill("#ffffff");
           }
@@ -135,6 +149,7 @@
     p5Instance._scale = scale;
     p5Instance._speed = speed;
     p5Instance._highlite = highlite;
+    p5Instance._background = background;
     p5Instance._imageURL = imageURL;
     p5Instance._imageWidth = imageWidth;
     p5Instance._imageHeight = imageHeight;
