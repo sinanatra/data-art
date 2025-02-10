@@ -37,7 +37,7 @@
   {#if scheduleData.length > 0}
     <Schedule data={scheduleData} />
   {:else}
-    <p>To be announced...</p>
+    <!-- <p>To be announced...</p> -->
   {/if}
 </article>
 

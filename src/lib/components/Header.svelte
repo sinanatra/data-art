@@ -1,5 +1,14 @@
 <script>
-  import Viz from "$lib/components/Viz.svelte";
+
+  import Viz1 from "$lib/components/Viz.svelte";
+  import Viz3 from "$lib/components/Viz3.svelte";
+
+  const components = [Viz1, Viz3];
+  const randomIndex = Math.floor(Math.random() * components.length);
+  // const Viz = components[randomIndex];
+
+  const Viz = Viz3
+
   import Logo from "$lib/components/Logo.svelte";
   import { base } from "$app/paths";
 </script>

@@ -24,7 +24,7 @@
   function updateSpeed() {
     for (let i = 0; i < gridY; i++) {
       rowOffsets[i] = p5Instance ? p5Instance.random(0, grid) : 0;
-      speeds[i] = p5Instance ? p5Instance.random(0.1, 0.2) : 0;
+      speeds[i] = p5Instance ? p5Instance.random(-0.1, 0.1) : 0;
     }
   }
 
@@ -63,9 +63,10 @@
         rowOffsets[i] = (rowOffsets[i] + speeds[i]) % p._grid;
       }
 
-      if (p.frameCount % 100 === 0) {
-        gridY = p.random([2, 5, 10]);
-        // updateSpeed();
+      if (p.frameCount % 120 === 0) {
+        grid = p.random([50, 75, 100]);
+        gridY = p.random([1, 2, 3, 4, 5]);
+        gradientWidth = p.random([5, 7, 10, 15, 20]);
       }
 
       for (let row = 0; row < p._gridY; row++) {
@@ -84,8 +85,8 @@
             factor
           );
           p.fill(c);
-          p.stroke(0);
-          p.strokeWeight(0.2);
+          p.stroke(20);
+          p.strokeWeight(0.3);
           p.rect(x, y, tileWidth, tileHeight);
         }
       }

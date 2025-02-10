@@ -1,6 +1,6 @@
 <script>
   import html2canvas from "html2canvas";
-  import Viz from "$lib/components/Viz.svelte";
+  import Viz from "$lib/components/Viz3.svelte";
 
   let customText = "DATA | ART";
   let imageWidth = 600;
@@ -52,6 +52,16 @@
     <label>
       Grid Size:
       <input type="number" bind:value={grid} min="10" max="50" />
+    </label>
+    <label>
+      Noise Scale:
+      <input
+        type="number"
+        bind:value={scale}
+        min="0.001"
+        max="0.1"
+        step="0.001"
+      />
     </label>
     <label>
       Load Image:

@@ -55,11 +55,13 @@
 
   .row {
     display: flex;
-    max-width: 840px;
   }
+
   .cell {
     flex: 1;
+    max-width: 840px;
   }
+  
   .row .cell:last-child {
     border-right: none;
   }

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  // (Optional: any additional JS logic can go here)
 </script>
 
 <section>
@@ -31,7 +32,6 @@
     height: max-content;
     user-select: none;
     font-family: geologica, sans-serif;
-    /* font-family: space, geologica, sans-serif; */
   }
 
   .logo div {
@@ -40,18 +40,26 @@
     top: 50%;
     white-space: nowrap;
     text-align: center;
+
     color: transparent;
     -webkit-text-stroke: 0.5px #000;
+
+    filter: drop-shadow(1px 1px 5px rgba(255, 255, 255, 0.6));
+
+    will-change: transform;
+
+    transform: translate(-50%, -80%) translateZ(0);
+
     animation: moveText 0.5s ease-out forwards;
-    transform: translate(-50%, -80%);
   }
 
   @keyframes moveText {
     0% {
-      transform: translate(-50%, -80%);
+      transform: translate(-50%, -80%) translateZ(0);
     }
     100% {
-      transform: translate(-50%, calc(-50% + var(--index) * 0.27ex));
+      transform: translate(-50%, calc(-50% + var(--index) * 0.27ex))
+        translateZ(0);
     }
   }
 
