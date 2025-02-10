@@ -44,12 +44,10 @@
     color: transparent;
     -webkit-text-stroke: 0.5px #000;
 
-    filter: drop-shadow(1px 1px 5px rgba(255, 255, 255, 0.6));
-
-    will-change: transform;
-
+    /* filter: drop-shadow(1px 1px 5px rgba(255, 255, 255, 0.6)); */
+    /* will-change: transform; */
+    
     transform: translate(-50%, -80%) translateZ(0);
-
     animation: moveText 0.5s ease-out forwards;
   }
 
