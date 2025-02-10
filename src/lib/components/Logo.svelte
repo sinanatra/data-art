@@ -26,7 +26,7 @@
   }
 
   .logo {
-    font-size: clamp(50px, 14vw, 100px);
+    font-size: clamp(30px, 14vw, 60px);
     position: relative;
     width: max-content;
     height: max-content;
