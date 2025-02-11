@@ -23,10 +23,10 @@
   </div>
 </header>
 <div class="links">
-  <a href="{base}/">data|art</a> |
+  <a href="{base}/">data | art</a> |
   <!-- <a href="{base}/schedule">schedule</a> | -->
   <a href="{base}/about">about</a> |
-  <a href="{base}/staging">staging</a> |
+  <!-- <a href="{base}/staging">staging</a> | -->
 
   <!-- <a
             href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"

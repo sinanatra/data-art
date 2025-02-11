@@ -93,10 +93,10 @@
       Height (px):
       <input type="number" bind:value={imageHeight} min="200" />
     </label>
-    <label>
+    <!-- <label>
       gradient Size:
       <input type="number" bind:value={gradientWidth} min="1" max="100" />
-    </label>
+    </label> -->
     <label>
       Load Image:
       <input type="file" accept="image/*" on:change={handleFileInput} />
