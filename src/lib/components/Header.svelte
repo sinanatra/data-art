@@ -1,13 +1,11 @@
 <script>
-
   import Viz1 from "$lib/components/Viz.svelte";
   import Viz3 from "$lib/components/Viz3.svelte";
 
   const components = [Viz1, Viz3];
   const randomIndex = Math.floor(Math.random() * components.length);
   // const Viz = components[randomIndex];
-
-  const Viz = Viz3
+  const Viz = Viz3;
 
   import Logo from "$lib/components/Logo.svelte";
   import { base } from "$app/paths";
@@ -22,20 +20,20 @@
 
   <div class="viz">
     <Viz />
-    <div class="links">
-      <a href="{base}/">data|art</a> |
-      <!-- <a href="{base}/schedule">schedule</a> | -->
-      <a href="{base}/about">about</a> |
-      <!-- <a href="{base}/toolkit">toolkit</a> | -->
-
-      <!-- <a
-                href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer">Source</a
-            > -->
-    </div>
   </div>
 </header>
+<div class="links">
+  <a href="{base}/">data|art</a> |
+  <!-- <a href="{base}/schedule">schedule</a> | -->
+  <a href="{base}/about">about</a> |
+  <a href="{base}/staging">staging</a> |
+
+  <!-- <a
+            href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer">Source</a
+        > -->
+</div>
 
 <style>
   .viz {
@@ -49,21 +47,14 @@
   }
 
   .links {
-    position: absolute;
-    bottom: 10px;
-    left: 5px;
     cursor: pointer;
     z-index: 100;
     font-size: 1.3rem;
-  }
-
-  .links > * {
-    text-shadow:
-      1px 1px 5px white,
-      1px 1px 5px white,
-      1px 1px 5px white,
-      1px 1px 5px white,
-      1px 1px 5px white;
+    background-color: var(--light);
+    width: 100%;
+    padding: 5px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
   }
 
   a {

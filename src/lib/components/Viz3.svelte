@@ -5,8 +5,35 @@
   export let gridY = 2;
   export let gradientWidth = 10;
 
-  export let highlite = "#0000ff";
-  export let endColor = "#ffffff";
+  // export let highlite = "#958cba";
+  export let endColor = "#efefef";
+
+  const fixedSat = 30;
+  const fixedBri = 100;
+  const randomHue = Math.floor(Math.random() * 360);
+  const randomHighlite = rgbToHex(...hsbToRgb(randomHue, fixedSat, fixedBri));
+  // export let highlite = randomHighlite;
+  export let highlite = "#2303FC";
+
+  function hsbToRgb(h, s, b) {
+    s = s / 100;
+    b = b / 100;
+    const k = (n) => (n + h / 60) % 6;
+    const f = (n) => b - b * s * Math.max(Math.min(k(n), 4 - k(n), 1), 0);
+    return [
+      Math.round(f(5) * 255),
+      Math.round(f(3) * 255),
+      Math.round(f(1) * 255),
+    ];
+  }
+
+  function rgbToHex(r, g, b) {
+    const toHex = (c) => {
+      const hex = c.toString(16);
+      return hex.length === 1 ? "0" + hex : hex;
+    };
+    return "#" + toHex(r) + toHex(g) + toHex(b);
+  }
 
   export let imageURL = "";
   export let imageWidth = 1200;
@@ -65,9 +92,29 @@
 
       if (p.frameCount % 120 === 0) {
         grid = p.random([50, 75, 100]);
-        gridY = p.random([1, 2, 3, 4, 5]);
+        gridY = p.random([2, 3, 4, 5]);
         gradientWidth = p.random([5, 7, 10, 15, 20]);
+        highlite = p.random(["#2303FC", "#ff8501", "#00ff02"]);
       }
+
+      let mainCol = p.color(p._startColor);
+
+      p.colorMode(p.HSB, 360, 100, 100, 100);
+
+      let secondaryHue = (p.hue(mainCol) + 236) % 360;
+      let secondaryCol = p.color(
+        secondaryHue,
+        p.saturation(mainCol),
+        p.brightness(mainCol)
+      );
+      let tertiaryHue = (p.hue(secondaryCol) + 236) % 360;
+      let tertiaryCol = p.color(
+        tertiaryHue,
+        p.saturation(mainCol),
+        p.brightness(mainCol)
+      );
+
+      p.colorMode(p.RGB);
 
       for (let row = 0; row < p._gridY; row++) {
         for (let col = 0; col < p._grid; col++) {
@@ -79,11 +126,26 @@
             d = p._grid - d;
           }
           let factor = p.constrain(d / p._gradientWidth, 0, 1);
-          let c = p.lerpColor(
-            p.color(p._startColor),
-            p.color(p._endColor),
-            factor
-          );
+          let c;
+
+          if (row % 4 === 0) {
+            c = p.lerpColor(
+              p.color(p._startColor),
+              p.color(p._endColor),
+              factor
+            );
+            // }
+            // else if (row % 2 === 0) {
+            // c = p.lerpColor(tertiaryCol, p.color(p._endColor), factor);
+          } else {
+            // c = p.lerpColor(secondaryCol, p.color(p._endColor), factor);
+            c = p.lerpColor(
+              p.color(p._startColor),
+              p.color(p._endColor),
+              factor
+            );
+          }
+
           p.fill(c);
           p.stroke(20);
           p.strokeWeight(0.3);

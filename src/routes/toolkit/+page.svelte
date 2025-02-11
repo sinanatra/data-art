@@ -5,8 +5,12 @@
   let customText = "DATA | ART";
   let imageWidth = 600;
   let imageHeight = 600;
-  let grid = 15;
-  let highlite = "#ff0000";
+  let gradientWidth = 15;
+
+  let hue = 120;
+
+  $: highlite = `hsl(${hue}, 100%, 50%)`;
+
   let textColor = "#000000";
   let background = "#efefef";
 
@@ -16,6 +20,8 @@
   let imageURL = "";
 
   let container;
+
+  let presets = ["#2303FC", "#ff8501", "#00ff02"];
 
   function handleFileInput(e) {
     const file = e.target.files[0];
@@ -31,6 +37,41 @@
       link.href = dataURL;
       link.click();
     });
+  }
+
+  function setPreset(color) {
+    const hsl = hexToHSL(color);
+    hue = hsl.h;
+  }
+
+  function hexToHSL(H) {
+    let r = 0,
+      g = 0,
+      b = 0;
+    if (H.length == 4) {
+      r = "0x" + H[1] + H[1];
+      g = "0x" + H[2] + H[2];
+      b = "0x" + H[3] + H[3];
+    } else if (H.length == 7) {
+      r = "0x" + H[1] + H[2];
+      g = "0x" + H[3] + H[4];
+      b = "0x" + H[5] + H[6];
+    }
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const cmin = Math.min(r, g, b),
+      cmax = Math.max(r, g, b),
+      delta = cmax - cmin;
+    let h = 0;
+    if (delta == 0) h = 0;
+    else if (cmax === r) h = ((g - b) / delta) % 6;
+    else if (cmax === g) h = (b - r) / delta + 2;
+    else h = (r - g) / delta + 4;
+    h = Math.round(h * 60);
+    if (h < 0) h += 360;
+
+    return { h };
   }
 </script>
 
@@ -50,36 +91,39 @@
       <input type="number" bind:value={imageHeight} min="200" />
     </label>
     <label>
-      Grid Size:
-      <input type="number" bind:value={grid} min="10" max="50" />
-    </label>
-    <label>
-      Noise Scale:
-      <input
-        type="number"
-        bind:value={scale}
-        min="0.001"
-        max="0.1"
-        step="0.001"
-      />
+      gradient Size:
+      <input type="number" bind:value={gradientWidth} min="1" max="100" />
     </label>
     <label>
       Load Image:
       <input type="file" accept="image/*" on:change={handleFileInput} />
     </label>
+
     <label>
-      Highlited Color:
-      <input type="color" bind:value={highlite} />
+      Color:
+      <input type="range" min="0" max="360" bind:value={hue} />
+      <span>{highlite}</span>
     </label>
+
+    <div class="presets">
+      {#each presets as preset}
+        <button
+          class="preset-button"
+          on:click={() => setPreset(preset)}
+          style="background-color: {preset};"
+          title={preset}
+        ></button>
+      {/each}
+    </div>
     <label>
       Text Color:
       <input type="color" bind:value={textColor} />
-    </label>
-    <label>
-      Background Color:
+      <!-- </label> -->
+      <!-- Background Color:
       <input type="color" bind:value={background} />
+    </label> -->
+      <button on:click={savePNG}>Download Image</button>
     </label>
-    <button on:click={savePNG}>Download Image</button>
   </div>
 
   <div
@@ -90,7 +134,7 @@
     <div class="viz-wrapper">
       <div class="viz-item">
         <Viz
-          {grid}
+          {gradientWidth}
           {asciiGradient}
           {scale}
           {speed}
@@ -99,6 +143,7 @@
           {imageWidth}
           {imageHeight}
           {background}
+          endColor={background}
           resize={true}
         />
       </div>
@@ -133,9 +178,21 @@
     font-family: sans-serif;
     font-size: 14px;
   }
-  .controls input {
-    margin: 5px;
+  .controls input,
+  .controls textarea {
+    margin: 5px 0;
     font-size: 14px;
+  }
+  .presets {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .preset-button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    cursor: pointer;
   }
   .canvas-container {
     position: relative;
@@ -155,7 +212,6 @@
   .viz-item:last-child {
     border-right: none;
   }
-  /* Ensure that the viz components’ canvases fill their containers */
   :global(.viz-container) {
     position: absolute;
     top: 0;

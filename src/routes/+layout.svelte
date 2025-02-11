@@ -25,7 +25,7 @@
     padding: 0;
     --light: #f5f5f5;
     --dark: rgb(20, 20, 20);
-    --highlite: red;
+    --highlite: #a8ff00;
     --highlite-1: rgba(0, 0, 0, 0.056);
     font-family: space, geologica, sans-serif;
     font-feature-settings: "liga", "ss03", "ss02";

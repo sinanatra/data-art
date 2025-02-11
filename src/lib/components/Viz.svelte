@@ -10,7 +10,7 @@
   export let grid = 15;
   export let scale = 0.01;
   export let speed = 0.002;
-  export let highlite = "#0000ff";
+  export let highlite = "#2303FC";
   export let background = "#efefef";
 
   export let imageURL = "";

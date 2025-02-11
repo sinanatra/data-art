@@ -27,16 +27,36 @@
   let visibleSpeakers = [];
   let allSpeakers = [];
 
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+    return array;
+  }
+
   Object.entries(groupedByDate).forEach(([date, items]) => {
     items.forEach((item, index) => {
       allSpeakers.push({
         ...item,
         key: `${date}-${item.Speaker}-${index}`,
         date,
-        delay: allSpeakers.length * 100,
       });
     });
   });
+
+  allSpeakers = shuffle(allSpeakers).map((speaker, index) => ({
+    ...speaker,
+    delay: index * 100,
+  }));
 
   function loadNextSpeaker() {
     if (visibleSpeakers.length < allSpeakers.length) {
@@ -118,7 +138,6 @@
   .grid-container {
     display: grid;
     grid-template-columns: 6fr 4fr;
-    border-top: 1px solid;
     height: 100%;
   }
 
@@ -147,6 +166,7 @@
     align-items: flex-start;
     border-bottom: 1px solid #000;
     transition: background-color 0.3s ease;
+    line-height: 2;
   }
 
   .grid-row:hover {
