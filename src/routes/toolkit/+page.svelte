@@ -30,7 +30,10 @@
 
   function savePNG() {
     if (!container) return;
-    html2canvas(container).then((canvas) => {
+    html2canvas(container, {
+      scale: window.devicePixelRatio || 2,
+      useCORS: true,
+    }).then((canvas) => {
       const dataURL = canvas.toDataURL("image/png");
       const link = document.createElement("a");
       link.download = "output.png";

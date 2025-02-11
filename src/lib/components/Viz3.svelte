@@ -94,7 +94,10 @@
         grid = p.random([50, 75, 100]);
         gridY = p.random([2, 3, 4, 5]);
         gradientWidth = p.random([5, 7, 10, 15, 20]);
-        highlite = p.random(["#2303FC", "#ff8501", "#00ff02"]);
+
+        if (["#2303FC", "#ff8501", "#00ff02"].includes(highlite)) {
+          highlite = p.random(["#2303FC", "#ff8501", "#00ff02"]);
+        }
       }
 
       let mainCol = p.color(p._startColor);
