@@ -51,7 +51,7 @@
     z-index: 100;
     font-size: 1.3rem;
     background-color: var(--light);
-    width: 100%;
+    width: calc(100% - 10px);
     padding: 5px;
     border-top: 1px solid;
     border-bottom: 1px solid;
