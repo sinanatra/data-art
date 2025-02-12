@@ -20,8 +20,12 @@
       const introResponse = await fetch(`${baseSheetURL}&${tabs.introduction}`);
       if (introResponse.ok) {
         const introCSV = await introResponse.text();
-        const introData = d3.csvParseRows(introCSV);
-        introductionText = introData.flat().join(" ");
+        introductionText = d3.csvParse(introCSV, (row) => ({
+          Date: row.Date,
+          Location: row.Location,
+          Subtitle: row.Subtitle,
+          Description: row.Description,
+        }));
       }
 
       const speakersResponse = await fetch(`${baseSheetURL}&${tabs.speakers}`);
@@ -56,7 +60,6 @@
       console.error("Error fetching or parsing data:", error);
     }
   });
-
 </script>
 
 <article>

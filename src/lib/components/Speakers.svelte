@@ -90,7 +90,14 @@
 >
   {#if introductionText}
     <div class="description-container">
-      <p class="placeholder-text">{introductionText}</p>
+      <p class="placeholder-text">{introductionText[0].Date}</p>
+      <p class="placeholder-text">{introductionText[0].Location}</p>
+      <br />
+      <strong>
+        <p class="placeholder-text">{introductionText[0].Subtitle}</p>
+      </strong>
+      <br>
+      <p class="placeholder-text">{introductionText[0].Description}</p>
     </div>
   {/if}
 
