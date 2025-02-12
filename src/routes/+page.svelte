@@ -56,6 +56,7 @@
       console.error("Error fetching or parsing data:", error);
     }
   });
+
 </script>
 
 <article>
