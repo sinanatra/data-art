@@ -30,11 +30,9 @@
   function shuffle(array) {
     let currentIndex = array.length,
       randomIndex;
-
     while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
       [array[currentIndex], array[randomIndex]] = [
         array[randomIndex],
         array[currentIndex],
@@ -96,7 +94,7 @@
       <strong>
         <p class="placeholder-text">{introductionText[0].Subtitle}</p>
       </strong>
-      <br>
+      <br />
       <p class="placeholder-text">{introductionText[0].Description}</p>
     </div>
   {/if}
@@ -105,21 +103,34 @@
     {#each visibleSpeakers as d (d.key)}
       <div
         class="grid-row name-entry"
-        on:click={() =>
-          (selected = selected && selected.key === d.key ? null : d)}
         in:fly={{ y: 500, duration: 300 }}
         out:fade
       >
-        <div
-          class="name"
-          style="background-image: linear-gradient(to right, var(--highlite-1), {categoryColors[
-            d.Category
-          ]});"
-        >
-          {d.Speaker}
-        </div>
+        {#if d.Bio}
+          <!-- Speaker has description; make clickable -->
+          <div
+            class="name clickable"
+            on:click={() =>
+              (selected = selected && selected.key === d.key ? null : d)}
+            style="background-image: linear-gradient(to right, var(--highlite-1), {categoryColors[
+              d.Category
+            ]});"
+          >
+            {d.Speaker}
+          </div>
+        {:else}
+          <div
+            class="name non-clickable"
+            style="background-image: linear-gradient(to right, var(--highlite-1), {categoryColors[
+              d.Category
+            ]});"
+          >
+            {d.Speaker}
+            <span class="coming-soon">Coming soon</span>
+          </div>
+        {/if}
       </div>
-      {#if selected && selected.key === d.key}
+      {#if selected && selected.key === d.key && d.Bio}
         <div class="detail-row">
           <div class="selected-speaker">
             {#if d.Picture}
@@ -184,13 +195,22 @@
     );
   }
 
-  .name-entry {
-    position: relative;
+  .name {
+    padding: 0 5px;
+  }
+
+  .clickable {
     cursor: pointer;
   }
 
-  .name {
-    padding: 0 5px;
+  .non-clickable {
+    cursor: default;
+  }
+
+  .coming-soon {
+    margin-left: 10px;
+    font-size: 0.9rem;
+    color: #888;
   }
 
   .detail-row {
