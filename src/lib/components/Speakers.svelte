@@ -133,7 +133,7 @@
         <div class="detail-row">
           <div class="selected-speaker">
             {#if d.Picture}
-              <img src={d.Picture} alt={d.Speaker} />
+              <img src="/speakers/{d.Picture}" alt={d.Speaker} />
             {/if}
             <div class="speaker-info">
               <h3>{d.Speaker}</h3>

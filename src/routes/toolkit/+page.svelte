@@ -170,51 +170,61 @@
     gap: 1rem;
     padding: 1rem;
   }
+
   .controls {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
   }
+
   .controls label {
     display: flex;
     flex-direction: column;
     font-family: sans-serif;
     font-size: 14px;
   }
+
   .controls input,
   .controls textarea {
     margin: 5px 0;
     font-size: 14px;
   }
+
   .presets {
     display: flex;
     gap: 0.5rem;
     align-items: center;
   }
+
   .preset-button {
     width: 30px;
     height: 30px;
     border: none;
     cursor: pointer;
   }
+  
   .canvas-container {
     position: relative;
     border: 1px solid #ccc;
     overflow: hidden;
   }
+
   .viz-wrapper {
     display: flex;
     width: 100%;
     height: 100%;
   }
+
   .viz-item {
     flex: 1;
     position: relative;
     border-right: 1px solid #ccc;
   }
+  
   .viz-item:last-child {
     border-right: none;
   }
+
   :global(.viz-container) {
     position: absolute;
     top: 0;
@@ -222,9 +232,11 @@
     width: 100%;
     height: 100%;
   }
+
   :global(canvas) {
     display: block;
   }
+
   .text-overlay {
     position: absolute;
     top: 50%;
@@ -232,12 +244,14 @@
     transform: translate(-50%, -50%);
     font-size: 50px;
     font-family: geologica, sans-serif;
+    font-weight: bold;
     text-align: center;
     pointer-events: none;
     line-height: 80px;
     text-transform: uppercase;
     width: 100%;
   }
+
   .text-overlay div {
     position: absolute;
     width: 100%;
@@ -245,6 +259,7 @@
     -webkit-text-stroke: 0.5px var(--text-color);
     transform: translateY(calc(-50% + var(--index) * 0.18ex));
   }
+
   .text-overlay div:nth-child(4) {
     color: var(--text-color);
   }
