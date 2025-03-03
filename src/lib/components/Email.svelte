@@ -64,6 +64,8 @@
     font-family: Space, sans-serif;
     font-size: 14px;
     color: black;
+    margin: 0;
+    padding: 0;
   }
 
   .signup-form {
