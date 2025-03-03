@@ -95,7 +95,7 @@
         <p class="placeholder-text">{introductionText[0].Subtitle}</p>
       </strong>
       <br />
-      <p class="placeholder-text">{introductionText[0].Description}</p>
+      <p class="placeholder-text">{@html introductionText[0].Description}</p>
     </div>
   {/if}
 
@@ -107,7 +107,6 @@
         out:fade
       >
         {#if d.Bio}
-          <!-- Speaker has description; make clickable -->
           <div
             class="name clickable"
             on:click={() =>
@@ -186,6 +185,10 @@
     transition: background-color 0.3s ease;
     line-height: 2;
   }
+
+  /* .grid-row:last-child {
+    border-bottom: none;
+  } */
 
   .grid-row:hover {
     background-image: linear-gradient(

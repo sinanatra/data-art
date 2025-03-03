@@ -1,6 +1,8 @@
 <script>
   import Header from "$lib/components/Header.svelte";
   import Email from "$lib/components/Email.svelte";
+  import Footer from "$lib/components/Footer.svelte";
+
 </script>
 
 <main>
@@ -8,12 +10,24 @@
   <slot />
 </main>
 <Email />
+<Footer />
 
 <style>
   main {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+  }
+
+  .media {
+    display: grid;
+    font-size: 1rem;
+    border-top: 1px solid #000;
+    padding: 10px;
+    background-color: white;
+    align-items: flex-start;
+    transition: background-color 0.3s ease;
+    line-height: 1;
   }
 
   :global(html, body) {
@@ -25,7 +39,7 @@
     padding: 0;
     --light: #f5f5f5;
     --dark: rgb(20, 20, 20);
-    --highlite: #2303FC;
+    --highlite: #2303fc;
     --highlite-1: rgba(0, 0, 0, 0.056);
     font-family: space, geologica, sans-serif;
     font-feature-settings: "liga", "ss03", "ss02";
