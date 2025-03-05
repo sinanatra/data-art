@@ -1,6 +1,6 @@
 <section>
   <div>
-    <img style="max-height: 40px;" src="./logos/harvard.png" alt="" />
+    <!-- <img style="max-height: 40px;" src="./logos/harvard.png" alt="" /> -->
     <img style="max-height: 60px;" src="./logos/CCNR.jpg" alt="" />
     <img src="./logos/barabasi.png" alt="" />
     <img style="max-height: 40px;" src="./logos/mlml.gif" alt="" />
