@@ -19,7 +19,6 @@
 <div class="links">
   <a href="{base}/">data | art</a> |
   <!-- <a href="{base}/schedule">schedule</a> | -->
-  <!-- <a href="{base}/about">about</a> | -->
   <!-- <a href="{base}/staging">staging</a> | -->
 
   <!-- <a

@@ -64,6 +64,7 @@
   .cell {
     flex: 1;
     max-width: 1024px;
+    width: 100%;
     margin-bottom: 10px;
   }
   
@@ -72,5 +73,11 @@
   }
   .header {
     background-color: transparent;
+  }
+
+  @media (max-width: 1024px) {
+    .row {
+    display: block;
+    }
   }
 </style>
