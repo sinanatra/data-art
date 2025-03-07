@@ -29,9 +29,9 @@
       <div class="row">
         {#each row as cell, cellIndex}
           {#if rowIndex === 0 || cellIndex === 0}
-            <div class="cell header">{cell}</div>
+            <div class="cell header">{@html cell}</div>
           {:else}
-            <div class="cell">{cell}</div>
+            <div class="cell">{@html  cell}</div>
           {/if}
         {/each}
       </div>
@@ -53,13 +53,18 @@
     min-height: 60vh;
   }
 
+  :global(h2){
+    font-size: 1.2em;
+  }
+
   .row {
     display: flex;
   }
 
   .cell {
     flex: 1;
-    max-width: 840px;
+    max-width: 1024px;
+    margin-bottom: 10px;
   }
   
   .row .cell:last-child {
