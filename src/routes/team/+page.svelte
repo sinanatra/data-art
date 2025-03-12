@@ -20,6 +20,8 @@
         console.error("Error fetching or parsing data:", error);
       }
     });
+
+    $: console.log(csvData)
   </script>
   
   {#if csvData.length > 0}
@@ -58,6 +60,7 @@
   
     .row {
       display: flex;
+      white-space: pre-wrap;
     }
   
     .cell {
@@ -65,6 +68,7 @@
       max-width: 1024px;
       width: 100%;
       margin-bottom: 10px;
+      white-space: pre-wrap;
     }
     
     .row .cell:last-child {

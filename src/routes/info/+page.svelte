@@ -59,12 +59,14 @@
 
   .row {
     display: flex;
+    white-space: pre-wrap;
   }
 
   .cell {
     flex: 1;
     max-width: 1024px;
     width: 100%;
+    white-space: pre-wrap;
     margin-bottom: 10px;
   }
   
