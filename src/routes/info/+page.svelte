@@ -31,7 +31,7 @@
           {#if rowIndex === 0 || cellIndex === 0}
             <div class="cell header">{@html cell}</div>
           {:else}
-            <div class="cell">{@html  cell}</div>
+            <div class="cell">{@html cell}</div>
           {/if}
         {/each}
       </div>
@@ -53,8 +53,10 @@
     min-height: 60vh;
   }
 
-  :global(h2){
+  :global(h2) {
     font-size: 1.2em;
+    white-space: nowrap;
+    margin: 20px 0 5px 0;
   }
 
   .row {
@@ -66,10 +68,10 @@
     flex: 1;
     max-width: 1024px;
     width: 100%;
-    white-space: pre-wrap;
     margin-bottom: 10px;
+    white-space: pre-wrap;
   }
-  
+
   .row .cell:last-child {
     border-right: none;
   }
@@ -79,7 +81,7 @@
 
   @media (max-width: 1024px) {
     .row {
-    display: block;
+      display: block;
     }
   }
 </style>

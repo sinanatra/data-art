@@ -56,6 +56,8 @@
   
     :global(h2){
       font-size: 1.2em;
+      white-space: nowrap;
+      margin: 20px 0 5px 0;
     }
   
     .row {
