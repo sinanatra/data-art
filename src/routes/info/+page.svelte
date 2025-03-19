@@ -56,12 +56,14 @@
   :global(h2) {
     font-size: 1.2em;
     white-space: nowrap;
-    margin: 20px 0 5px 0;
+    margin: 10px 0 5px 0;
+    padding: 0;
   }
 
   .row {
     display: flex;
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
+    display: block;
   }
 
   .cell {

@@ -3,9 +3,12 @@
 </script>
 
 <div class="links">
-  <a href="{base}/schedule">schedule</a>
-  <a href="{base}/info">info</a>
-  <a href="{base}/team">team</a>
+  <a href="{base}/schedule">Schedule</a>
+  <br>
+  <a href="{base}/info">Info</a>
+  <a href="{base}/team">Team</a>
+  <a href="{base}/apply">Apply</a>
+  <br>
   <a href="{base}/toolkit">Toolkit</a>
   <a
     href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
