@@ -106,7 +106,7 @@
         in:fly={{ y: 500, duration: 300 }}
         out:fade
       >
-        {#if d.Bio}
+        {#if d.Bio && !d.Role}
           <div
             class="name clickable"
             on:click={() =>
@@ -116,6 +116,18 @@
             ]});"
           >
             {d.Speaker}
+          </div>
+        {:else if d.Role}
+          <div
+            class="name clickable"
+            on:click={() =>
+              (selected = selected && selected.key === d.key ? null : d)}
+            style="background-image: linear-gradient(to right, var(--highlite-1), {categoryColors[
+              d.Category
+            ]});"
+          >
+            {d.Speaker}
+            <span class="coming-soon">{d.Role}</span>
           </div>
         {:else}
           <div

@@ -41,6 +41,7 @@
             Url: row.Url,
             Category: row.Category,
             Visible: row.Visible,
+            Role: row.Role,
           }))
           .filter((d) => d.Visible == "TRUE");
       }
