@@ -70,18 +70,28 @@
     display: grid;
     grid-template-columns: 1fr 1fr 2fr 3fr;
     font-size: 1rem;
-    align-items: center;
+    align-items: start;
     transition:
       transform 0.3s ease,
       background-color 0.3s ease;
     border-bottom: 1px solid #000;
   }
 
+  .grid-row:last-of-type {
+    border-bottom: none;
+  }
+
   .date {
+    font-family: "space mono";
     font-weight: bold;
+    background-color: black;
+    color: white;
+    padding: 0;
   }
 
   .time {
+    font-family: space;
+    font-weight: bold;
     text-align: right;
   }
 
@@ -91,14 +101,18 @@
 
   p {
     margin: 0;
-    padding: 2px;
+    padding: 5px 10px;
+    
+    vertical-align: top;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 
   @media (max-width: 768px) {
     .grid-row {
       display: block;
       font-size: 1.2rem;
-      line-height: 2;
+      line-height: 1.4;
     }
 
     .time {

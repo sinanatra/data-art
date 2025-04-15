@@ -17,9 +17,14 @@
   </div>
 </header>
 <div class="links">
-  <a href="{base}/">data | art</a> |
-  <!-- <a href="{base}/schedule">schedule</a> | -->
-  <!-- <a href="{base}/staging">staging</a> | -->
+  <a href="{base}/">data | art</a> –
+  <a href="https://commerce.cashnet.com/SFCCNR" target="_blank">register</a> –
+  <a href="{base}/info">info</a> –
+  <a href="{base}/team">team</a> –
+  <a href="{base}/apply">apply</a> –
+
+  <!-- <a href="{base}/schedule">schedule</a> – -->
+  <!-- <a href="{base}/staging">staging</a> – -->
 
   <!-- <a
             href="https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/edit?gid=0#gid=0usp=sharing"
@@ -56,6 +61,13 @@
     /* font-size: 14px; */
 
     font-family: space, monospace;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #888;
+    cursor: not-allowed;
   }
 
   header {

@@ -92,4 +92,10 @@
     src: url("/SpaceMono-Regular.ttf");
     font-weight: normal;
   }
+
+  @font-face {
+    font-family: "space mono";
+    src: url("/SpaceMono-Bold.ttf");
+    font-weight: bold;
+  }
 </style>

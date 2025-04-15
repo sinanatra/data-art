@@ -92,10 +92,10 @@
         rowOffsets[i] = (rowOffsets[i] + speeds[i]) % p._grid;
       }
 
-      if (p.frameCount % 60 === 0) {
+      if (p.frameCount % 120 === 0) {
         grid = p.random([50, 75, 100]);
-        gridY = p.random([2, 3, 4, 5, 10, 20, 30, 40, 50]);
-        gradientWidth = p.random([5, 7, 10, 15, 20, 50, 60, 70, 80, 90, 100]);
+        gridY = p.random([2, 3, 4, 5, 10, 20]);
+        gradientWidth = p.random([5, 7, 10, 15, 20]);
 
         if (["#2303FC", "#ff8501", "#00ff02"].includes(highlite)) {
           highlite = p.random(["#2303FC", "#ff8501", "#00ff02"]);

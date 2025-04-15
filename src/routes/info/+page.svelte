@@ -55,7 +55,7 @@
 
   :global(h2) {
     font-size: 1.2em;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     margin: 10px 0 5px 0;
     padding: 0;
   }
