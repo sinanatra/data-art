@@ -55,8 +55,8 @@
     >
       <p class="date">{row.displayDate}</p>
       <p class="time">{row.Time}</p>
-      <p class="speaker">{row.Speaker}</p>
       <p class="event-title">{row.Event}</p>
+      <p class="speaker">{row.Speaker}</p>
     </div>
   {/each}
 </section>
@@ -84,9 +84,6 @@
   .date {
     font-family: "space mono";
     font-weight: bold;
-    background-color: black;
-    color: white;
-    padding: 0;
   }
 
   .time {
@@ -102,7 +99,7 @@
   p {
     margin: 0;
     padding: 5px 10px;
-    
+
     vertical-align: top;
     white-space: pre-wrap;
     word-wrap: break-word;
@@ -113,6 +110,10 @@
       display: block;
       font-size: 1.2rem;
       line-height: 1.4;
+    }
+
+    .date {
+      font-size: 1.4rem;
     }
 
     .time {
