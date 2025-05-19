@@ -8,7 +8,7 @@
   const baseSheetURL =
     "https://docs.google.com/spreadsheets/d/1k3pYfMouxEuUSszoOD2xKOtbBdUiVMvDBWhQrxB0cHc/gviz/tq?tqx=out:csv";
   const tabs = {
-    schedule: "gid=190532547",
+    schedule: "gid=211251760", // gid=211251760#gid=211251760
   };
 
   onMount(async () => {

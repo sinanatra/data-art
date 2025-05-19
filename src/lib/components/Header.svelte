@@ -18,12 +18,12 @@
 </header>
 <div class="links">
   <a href="{base}/">data | art</a> –
+  <a href="{base}/schedule">schedule</a> –
   <a href="https://commerce.cashnet.com/SFCCNR" target="_blank">register</a> –
   <a href="{base}/info">info</a> –
   <a href="{base}/team">team</a> –
   <a href="{base}/apply">apply</a> –
 
-  <!-- <a href="{base}/schedule">schedule</a> – -->
   <!-- <a href="{base}/staging">staging</a> – -->
 
   <!-- <a

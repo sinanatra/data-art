@@ -41,19 +41,29 @@
   }
 
   loadNextRow();
+
+  function formatDateUS(dateString) {
+    if (!dateString) return "";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
 </script>
 
-<section class="grid-container" style="min-height: {allRows.length * 2}px;">
+<section class="grid-container" style="min-height: {allRows.length * 3}px;">
   {#each visibleRows as row (row.key)}
     <div
       class="grid-row"
-      in:fly={{ y: 500, duration: 300 }}
+      in:fly={{ y: 500, duration: 100 }}
       out:fade
       style="background-image: linear-gradient(to left, {categoryColors[
         row.Category
       ]},var(--highlite-1));"
     >
-      <p class="date">{row.displayDate}</p>
+      <p class="date">{formatDateUS(row.displayDate)}</p>
       <p class="time">{row.Time}</p>
       <p class="event-title">{row.Event}</p>
       <p class="speaker">{row.Speaker}</p>
@@ -110,6 +120,11 @@
       display: block;
       font-size: 1.2rem;
       line-height: 1.4;
+      padding: 10px;
+    }
+
+    .grid-row p {
+      padding: 2px;
     }
 
     .date {
