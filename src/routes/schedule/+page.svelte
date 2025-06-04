@@ -24,6 +24,7 @@
             Speaker: row.Speaker,
             Category: row.Category,
             Visible: row.Visible,
+            Location: row.Location,
           }))
           .filter((d) => d.Visible == "TRUE");
       }

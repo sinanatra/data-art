@@ -70,6 +70,7 @@
       <p class="time">{row.Time}</p>
       <p class="event-title">{row.Event}</p>
       <p class="speaker">{row.Speaker}</p>
+      <p class="location">{row.Location}</p>
     </div>
   {/each}
 </section>
@@ -81,7 +82,7 @@
 
   .grid-row {
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr 3fr;
+    grid-template-columns: 1fr 1fr 2fr 3fr 1fr;
     font-size: 1rem;
     align-items: start;
     transition:
@@ -103,6 +104,9 @@
     font-family: space;
     font-weight: bold;
     text-align: right;
+  }
+  .location {
+    font-size: smaller;
   }
 
   .speaker {
